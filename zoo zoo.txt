@@ -1,0 +1,1332 @@
+
+#include<windows.h>3
+#include<GL/glut.h>
+#include<math.h>
+float xr=0,yr=0;
+int fl=0,flr=0,fll=0,fls=0,flchild=0,fld=0;
+int flag=0,flt=0,fle=0,flf=0,flb=0,fly=0,cou=0;
+int x,y,value;
+
+/*void print_text(char *str,GLint x,GLint y)
+{
+	GLint i;
+	glRasterPos2d(x,y);
+	for(i=0;str[i]!='\0';i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12,str[i]);
+}*/
+
+/*void *currentfot;
+void setFon(void *font) //to set the font
+{
+currentfot = font;
+}
+
+void drawstring1(float x,float y,float z,char *string)
+{
+char *c;
+glRasterPos3f(x,y,z);
+for(c=string;*c!='\0';c++)
+{ glColor3f(0.0,0.0,0.0);
+glutBitmapCharacter(currentfot,*c);
+}
+}
+void hii(){
+	glBegin(GL_POLYGON);
+	glColor3f(1,0,0,);
+	glVertex2i(450,900);
+	glVertex2i(450,870);
+	glVertex2i(500,870);
+	glVertex2i(500,900);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(84,50);
+	glVertex2i(84,47);
+	glVertex2i(87,50);
+	glEnd();
+
+	setFon(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring1(470.0,880.0,0.0," HII...");
+	glFlush();
+}*/
+void update(int value)
+{
+if(fld==1)//fr down
+ {
+	 y-=3;
+	 x+=0;
+	 glutPostRedisplay();
+ }
+
+  if(fl==1) //fr up
+  {
+   y+=3;
+   x+=0;
+  glutPostRedisplay();
+  }
+  if(flr==1){      //ri8
+   x+=3;
+   y+=0;
+   glutPostRedisplay();
+  }
+  if(fll==1){      //left
+   x-=3;
+   y+=0;
+   glutPostRedisplay();
+  }
+  if(fls==1){        //stop
+   glutPostRedisplay();
+  }
+
+  glutPostRedisplay();
+  glutTimerFunc(100,update,0);
+
+}
+
+
+void light(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(1,0,0);
+x1=895;
+y1=790;
+r=45;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void moon(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(1.0,1.0,1.0);
+x1=50;
+y1=950;
+r=40;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+
+
+void *currentfont;
+void setFont(void *font) //to set the font
+{
+currentfont = font;
+}
+void drawstring(float x,float y,float z,char *string)
+{
+char *c;
+glRasterPos3f(x,y,z);
+for(c=string;*c!='\0';c++)
+{ glColor3f(0.0,0.0,0.0);
+glutBitmapCharacter(currentfont,*c);
+}
+}
+
+
+
+
+
+void backgd(){
+
+glBegin(GL_QUADS);
+glColor3f(1,0,1);
+glVertex2i(150,765);
+glVertex2i(750,765);
+glVertex2i(750,815);
+glVertex2i(150,815);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(150,660);
+glVertex2i(750,660);
+glVertex2i(750,720);
+glVertex2i(150,720);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(100,575);
+glVertex2i(800,575);
+glVertex2i(800,625);
+glVertex2i(100,625);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(200,850);
+glVertex2i(250,850);
+glVertex2i(250,625);
+glVertex2i(200,625);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(650,850);
+glVertex2i(700,850);
+glVertex2i(700,625);
+glVertex2i(650,625);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(170,400);
+glVertex2i(210,400);
+glVertex2i(210,580);
+glVertex2i(170,580);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(220,450);
+glVertex2i(260,450);
+glVertex2i(260,580);
+glVertex2i(220,580);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(720,400);
+glVertex2i(680,400);
+glVertex2i(680,580);
+glVertex2i(720,580);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.45,0.35,0.68);
+glVertex2i(670,450);
+glVertex2i(630,450);
+glVertex2i(630,580);
+glVertex2i(670,580);
+glEnd();
+glBegin(GL_POINTS);
+glColor3f(1.0,1.0,1.0);
+glVertex2i(150,920);
+glVertex2i(250,950);
+glVertex2i(350,965);
+glVertex2i(500,930);
+glVertex2i(560,940);
+glVertex2i(750,945);
+glVertex2i(830,965);
+glVertex2i(650,940);
+glVertex2i(450,960);
+glVertex2i(880,955);
+glVertex2i(290,930);
+glVertex2i(950,950);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.20,0.30,0.0);
+glVertex2i(835,150);
+glVertex2i(955,150);
+glVertex2i(910,250);
+glVertex2i(880,250);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.20,0.30,0.0);
+glVertex2i(885,250);
+glVertex2i(905,250);
+glVertex2i(905,725);
+glVertex2i(885,725);
+glEnd();
+glBegin(GL_QUADS);
+glColor3f(0.20,0.30,0.0);
+glVertex2i(885,725);
+glVertex2i(905,725);
+glVertex2i(920,750);
+glVertex2i(870,750);
+glEnd();
+}
+//***********************functions of zoozi**********************//
+void ellipse1(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void face1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=380;
+y1=840;
+r=50;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void feet1(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void feet2(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void palm1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=460;
+y1=650;
+r=16;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void palm2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=300;
+y1=650;
+r=16;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void lfinger1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=447;
+y1=634;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void lfinger2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=460;
+y1=630;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void lfinger3(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=473;
+y1=633;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void rfinger1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=310;
+y1=634;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void rfinger2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=297;
+y1=630;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void rfinger3(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=286;
+y1=637;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void body1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=380;
+y1=680;
+r=60;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void knee1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=360;
+y1=610;
+r=18;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void knee2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=400;
+y1=610;
+r=18;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void eye1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=360;
+y1=850;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void eye2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=400;
+y1=850;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void mouth1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=380;
+y1=810;
+r=6.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}glEnd();
+}
+void zoozi(){
+glBegin(GL_POLYGON);//hand1
+glColor3f(0.98,0.76,0.86);
+glVertex2i(390,810);
+glVertex2i(400,770);
+glVertex2i(445,730);
+glVertex2i(470,730);
+glEnd();
+glBegin(GL_POLYGON);//hand2
+glColor3f(0.98,0.76,0.86);
+glVertex2i(450,730);
+glVertex2i(470,730);
+glVertex2i(470,650);
+glVertex2i(450,650);
+glEnd();
+glBegin(GL_POLYGON);//hand3
+glColor3f(0.98,0.76,0.86);
+glVertex2i(370,810);
+glVertex2i(360,770);
+glVertex2i(315,730);
+glVertex2i(290,730);
+glEnd();
+glBegin(GL_POLYGON);//hand4
+glColor3f(0.98,0.76,0.86);
+glVertex2i(310,730);
+glVertex2i(290,730);
+glVertex2i(290,650);
+glVertex2i(310,650);
+glEnd();
+glBegin(GL_POLYGON);//leg1
+glColor3f(0.98,0.76,0.86);
+glVertex2i(340,640);
+glVertex2i(345,600);
+glVertex2i(375,600);
+glVertex2i(380,640);
+glEnd();
+glBegin(GL_POLYGON);//leg2
+glColor3f(0.98,0.76,0.86);
+glVertex2i(380,640);
+glVertex2i(385,600);
+glVertex2i(415,600);
+glVertex2i(420,640);
+glEnd();
+glBegin(GL_POLYGON);//leg3
+glColor3f(0.98,0.76,0.86);
+glVertex2i(385,600);
+glVertex2i(390,520);
+glVertex2i(405,520);
+glVertex2i(415,600);
+glEnd();
+glBegin(GL_POLYGON);//leg4
+glColor3f(0.98,0.76,0.86);
+glVertex2i(345,600);
+glVertex2i(350,520);
+glVertex2i(365,520);
+glVertex2i(375,600);
+glEnd();
+glBegin(GL_TRIANGLES);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(360,888);
+glVertex2i(385,898);
+glVertex2i(360,910);
+glEnd();
+glBegin(GL_TRIANGLES);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(375,898);
+glVertex2i(400,888);
+glVertex2i(400,910);
+glEnd();
+glBegin(GL_POLYGON);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(370,790);
+glVertex2i(377,775);
+glVertex2i(383,775);
+glVertex2i(390,790);
+glEnd();
+glBegin(GL_POLYGON);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(377,775);
+glVertex2i(368,710);
+glVertex2i(380,695);
+glVertex2i(393,710);
+glVertex2i(383,775);
+glEnd();
+}
+//******************end of zoozi****************//
+//*****************functions of zoozoo2*******************//
+void face2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=650;
+y1=450;
+r=50;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void ellipse2(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void body2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=650;
+y1=290;
+r=60;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2feet1(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void z2feet2(int x,int y,float stAngle,float endAngle,int RX,int RY)
+{
+double i;
+glColor3f(0.98,0.76,0.86);
+glBegin(GL_POLYGON);
+i=stAngle;
+while(i<=endAngle){
+glVertex2f(int((RX*cos(i)+y)+.5),int((RY*sin(i)+x)+.5));
+i=i+.001;
+}
+glEnd();
+}
+void z2palm1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=570;
+y1=270;
+r=16;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2palm2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=730;
+y1=270;
+r=16;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2lfinger1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=718;
+y1=253;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2lfinger2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=730;
+y1=250;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2lfinger3(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=743;
+y1=253;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2rfinger1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=580;
+y1=253;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2rfinger2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=568;
+y1=250;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2rfinger3(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.98,0.76,0.86);
+x1=557;
+y1=255;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2eye1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=630;
+y1=460;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2eye2(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=670;
+y1=460;
+r=5.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}
+glEnd();
+}
+void z2mouth1(){
+float angle=0,x1,x2,y1,y2,r;
+glColor3f(0.0,0.0,0.0);
+x1=650;
+y1=425;
+r=6.0;
+glBegin(GL_TRIANGLE_FAN);
+glVertex2f(x1,y1);
+for(angle=1.0;angle<361.0;angle+=0.2)
+{
+x2=x1+sin(angle)*r;
+y2=y1+cos(angle)*r;
+glVertex2f(x2,y2);
+}glEnd();
+}
+void zoozoo2(){
+glBegin(GL_POLYGON);//z2hand1
+glColor3f(0.98,0.76,0.86);
+glVertex2i(660,420);
+glVertex2i(670,380);
+glVertex2i(715,340);
+glVertex2i(740,340);
+glEnd();
+glBegin(GL_POLYGON);//z2hand2
+glColor3f(0.98,0.76,0.86);
+glVertex2i(720,340);
+glVertex2i(740,340);
+glVertex2i(740,280);
+glVertex2i(720,280);
+glEnd();
+glBegin(GL_POLYGON);//z2hand3
+glColor3f(0.98,0.76,0.86);
+glVertex2i(640,420);
+glVertex2i(630,380);
+glVertex2i(585,340);
+glVertex2i(560,340);
+glEnd();
+glBegin(GL_POLYGON);//z2hand4
+glColor3f(0.98,0.76,0.86);
+glVertex2i(580,340);
+glVertex2i(560,340);
+glVertex2i(560,280);
+glVertex2i(580,280);
+glEnd();
+glBegin(GL_POLYGON);//z2leg1
+glColor3f(0.98,0.76,0.86);
+glVertex2i(610,250);
+glVertex2i(615,180);
+glVertex2i(645,180);
+glVertex2i(650,250);
+glEnd();
+glBegin(GL_POLYGON);//z2leg2
+glColor3f(0.98,0.76,0.86);
+glVertex2i(650,250);
+glVertex2i(655,180);
+glVertex2i(685,180);
+glVertex2i(690,250);
+glEnd();
+glBegin(GL_POLYGON);//z2leg3
+glColor3f(0.98,0.76,0.86);
+glVertex2i(655,180);
+glVertex2i(660,110);
+glVertex2i(675,110);
+glVertex2i(685,180);
+glEnd();
+glBegin(GL_POLYGON);//z2leg4
+glColor3f(0.98,0.76,0.86);
+glVertex2i(615,180);
+glVertex2i(620,110);
+glVertex2i(635,110);
+glVertex2i(645,180);
+glEnd();
+glBegin(GL_POLYGON);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(640,400);
+glVertex2i(647,385);
+glVertex2i(653,385);
+glVertex2i(660,400);
+glEnd();
+glBegin(GL_POLYGON);
+glColor3f(1.0,0.05,0.05);
+glVertex2i(647,385);
+glVertex2i(638,320);
+glVertex2i(650,305);
+glVertex2i(663,320);
+glVertex2i(653,385);
+glEnd();
+}
+
+
+
+
+void hii(){
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,0.9,0.9);
+	glVertex2i(450,910);
+	glVertex2i(450,870);
+	glVertex2i(630,870);
+	glVertex2i(630,910);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(450,870);
+	glVertex2i(430,850);
+	glVertex2i(470,870);
+	glEnd();
+
+	setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring(470.0,880.0,0.0," HII....Hw r u..!!!.");
+	//glFlush();
+}
+
+void hello(){
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,0.9,0.9);
+	glVertex2i(720,510);	glVertex2i(720,470);
+	glVertex2i(900,470);
+	glVertex2i(900,510);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(720,470);
+	glVertex2i(700,450);	glVertex2i(740,470);
+	glEnd();
+
+	setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring(720.0,480.0,0.0," Hello.... i'm fyn wbu..!!!.");
+	//glFlush();
+}
+
+void im(){
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,0.9,0.9);
+	glVertex2i(450,910);
+	glVertex2i(450,870);
+	glVertex2i(600,870);
+	glVertex2i(600,910);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(450,870);
+	glVertex2i(430,850);
+	glVertex2i(470,870);
+	glEnd();
+
+	setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring(470.0,880.0,0.0," i'm good...!!! ");
+	//glFlush();
+}
+void bye1(){
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,0.9,0.9);
+	glVertex2i(720,510);
+	glVertex2i(720,470);
+	glVertex2i(830,470);
+	glVertex2i(830,510);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(720,470);
+	glVertex2i(700,450);
+	glVertex2i(740,470);
+	glEnd();
+
+	setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring(720.0,480.0,0.0," ok GTG CYA...!!!");
+	//glFlush();
+}
+void bye2(){
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,0.9,0.9);
+	glVertex2i(450,910);
+	glVertex2i(450,870);
+	glVertex2i(600,870);
+	glVertex2i(600,910);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2i(450,870);
+	glVertex2i(430,850);
+	glVertex2i(470,870);
+	glEnd();
+
+	setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+	glColor3f(1.0,0.0,0.0);
+	drawstring(470.0,880.0,0.0," 0k bye..!!!tc ");
+	//glFlush();
+}
+void display()
+{
+glClearColor(0.0,0.0,0.0,0.0);
+glClear(GL_COLOR_BUFFER_BIT);
+glPushMatrix();
+moon();
+light();
+backgd();
+
+glPopMatrix();
+if(flt==1){
+	hii();
+}
+if(fle==1){
+	hello();
+}
+if(flf==1){
+	im();
+}
+if(flb==1){
+	bye1();
+}
+if(fly==1){
+	bye2();
+}
+//**********zoozi***********//
+ellipse1(725,380,10,30,45,70);
+feet1(520,400,30,50,20,10);
+feet2(520,360,30,50,20,10);
+face1();
+palm1();
+palm2();
+lfinger1();
+lfinger2();
+lfinger3();
+rfinger1();
+rfinger2();
+rfinger3();
+body1();
+knee1();
+knee2();
+eye1();
+eye2();
+mouth1();
+zoozi();
+//***************end of zoozi*****************//
+//***************** start of zoozoo2 ***************//
+glPushMatrix();
+glTranslatef(x,y,0.0);
+face2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+ellipse2(335,650,10,30,45,70);
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2feet1(110,670,30,50,20,10);
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2feet2(110,630,30,50,20,10);
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2palm1();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2palm2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+body2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2lfinger1();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2lfinger2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2lfinger3();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2rfinger1();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2rfinger2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2rfinger3();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2eye1();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2eye2();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+z2mouth1();
+glPopMatrix();
+glPushMatrix();
+glTranslatef(x,y,0.0);
+zoozoo2();
+glPopMatrix();
+
+//**************************end of zoozoo2*********************//
+//text();
+glFlush();
+}
+
+
+
+
+
+void frontscreen(void)
+{
+setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+glClearColor(0,0,0,0); ///background for cover page
+glClear(GL_COLOR_BUFFER_BIT);
+glColor3f(0,1,0);
+drawstring(200.0,780.0,0.0," MAHARAJA INSTITUTE OF TECHNOLOGY ");
+glColor3f(0.7,0,1);
+drawstring(230,710,0.0,"DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING");
+glColor3f(1,0.5,0);
+drawstring(400,600,0.0,"A MINI PROJECT ON");
+glColor3f(1,0,0);
+drawstring(400,550,0.0,"EL'ROMEO AND JULIET");
+glColor3f(1,0.5,0);
+drawstring(200,400,0.0,"BY:");
+glColor3f(1,1,1);
+drawstring(150,350,0.0,"RAGHAVENDRA JC");
+glColor3f(1,1,1);
+drawstring(130,300,0.0,"SOHAN SOMAIAH MB");
+glColor3f(1,0.5,0);
+drawstring(700,400,0.0,"GUIDES:");
+glColor3f(1,1,1);
+drawstring(650,340,0.0,"Mr. BHARATH BS ");
+glColor3f(1,1,1);
+drawstring(360,200,0.0,"PRESS  ENTER  TO  START");
+glFlush();
+}
+
+void backscreen(void)
+{
+setFont(GLUT_BITMAP_TIMES_ROMAN_24);
+glClearColor(0,0,0,0); ///background for cover page
+glClear(GL_COLOR_BUFFER_BIT);
+glColor3f(1,0,0);
+drawstring(400.0,500.0,0.0," THANK  YOU!!!!");
+glFlush();
+}
+
+void mydisplay1(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	if(flag==0)
+		frontscreen();
+	if(flag==1)
+		display();
+	if(flag==2)
+		backscreen();
+	glutSwapBuffers();
+	glFlush();
+}
+
+void keyboard(unsigned char key, int xmouse,int ymouse)
+ {
+  switch(key)
+  {
+
+  case 'q':exit(0);
+   break;
+  case 'R':
+   glClearColor(0.5,0.0,0.0,0.0);
+   break;
+  case 'G':
+   glClearColor(0.0,0.5,0.0,0.0);
+     break;
+  case 'k':
+	  fld=0;
+	  fls=1;
+	  flr=1;
+	  fl=1;
+	  fll=1;
+	  break;
+	   case 'j':
+	  fld=1;
+	  fls=0;
+	  flr=0;
+	  fl=0;
+	  fll=0;
+	  break;
+
+  case 'u':
+	  fld=0;
+         fl=1; //up
+      fls=0;
+      flr=0;
+      fll=0;
+       break;
+  case 's':     //stop
+   fls=1;
+   flr=0;
+   fll=0;
+   fl=0;
+   fld=0;
+   fly=0;
+   break;
+  case 'r':      //right
+  flr=1;
+  fls=0;
+  fll=0;
+  fl=0;
+  fld=0;
+   break;
+    case 'y':      //right
+  flr=0;
+  fls=1;
+  fll=1;
+  fl=1;
+  fld=1;
+   break;
+  case 'l':        //left
+   fll=1;
+   fls=0;
+   flr=0;
+   fl=0;
+   fld=0;
+   break;
+  case 'a':
+	 flt=1;
+	 //for(int i=0;i<100;i++){
+		// cou+=i;
+	 //}
+	 /* hii();
+	  glutPostRedisplay();*/
+	 break;
+  case 'b':
+	  fle=1;
+	  flt=0;
+	  break;
+  case 'c':
+	  flf=1;
+	  fle=0;
+	  break;
+  case 'd':
+	  flb=1;
+	  flf=0;
+	  break;
+  case 'e':
+	  fly=1;
+	  flb=0;
+	  break;
+  case 13:
+	  if(flag==1)
+	  {
+		  flag=2;
+		  mydisplay1();
+	  }
+	  if(flag==0)
+	  {
+		  flag=1;
+		  mydisplay1();
+	  }
+	  break;
+    default:
+    glClearColor(1.0,1.0,1.0,0.0);
+    break;
+
+
+      }
+  glutPostRedisplay();
+ }
+
+void myinit()
+{
+glClearColor(0.0,0.0,1.0,0.f);
+glColor3f(1.0,0.0,0.0);
+glPointSize(5.0);
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+gluOrtho2D(0.0,999.0,0.0,999.0);
+}
+int main(int argc,char **argv)
+{
+glutInit(&argc,argv);
+glutInitWindowSize(1000,1000);
+glutInitWindowPosition(0,0);
+glutCreateWindow("zoozoo & zoozi");
+glutDisplayFunc(mydisplay1);
+glutTimerFunc(100,update,0);
+glutKeyboardFunc(keyboard);
+myinit();
+glutMainLoop();
+}
+
+
+
+
